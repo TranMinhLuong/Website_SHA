@@ -1,0 +1,571 @@
+body{
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    color: #5f6368;
+}
+.chat{
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    background: white;
+    border-left: solid 1px black;
+    width: 0;
+    height: 100%;
+    padding-top: 5px;
+    overflow-x: hidden;
+    transition: .5s;
+}
+.chat .chat-detail{
+    box-sizing: border-box;
+}
+.container{
+    height: 100vh;
+    background-color: #111;
+    padding: 10px; 
+    transition: margin-right .5s;  
+}
+.videos{
+    display: flex;
+    width: 100%;
+    height: 95%;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/* menu bottom */
+.bottom{
+    height: 15vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    transition: 0.5s;
+}
+.bottom .share-room{
+    position: relative;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+.bottom .event-video{
+    position: relative;
+    float: left;
+    width: 60%;
+    height: 100%;
+}
+.bottom .action-more{
+    position: relative;
+    float: right;
+    width: 20%;
+    height: 100%;
+}
+.bottom .share-room span{
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #202124;
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 25px 1px 25px 1px;
+    border-radius: 50%;
+}
+.bottom .event-video span{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 5px;
+    font-size: 30px;
+    padding: 15px 18px 15px 18px;
+    border-radius: 50%;
+    border:0.1rem solid darkgray;
+}
+#button-mic{
+    transform: translate(-125%, -50%);
+    /* background: red;
+    color: white;
+    border-color: white; */
+}
+#button-call{
+    transform: translate(0%, -50%);
+    color: red;
+}
+#button-videocam{
+    transform: translate(125%, -50%);
+}
+.bottom .action-more span{
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #202124;
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 15px 18px 15px 18px;
+    border-radius: 50%;
+}
+#button-presentnow{
+    transform: translate(-100%, -50%);
+}
+#button-ellipsis{
+    transform: translate(50%, -50%);
+}
+.bottom .event-video span:hover, .bottom .share-room span:hover, .bottom .action-more span:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* menu bottom */
+/*  */
+.box{
+    flex: 1 0 41%;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+}
+video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 95%;
+    transition: 1s;
+    transform: translate(-50%, -50%);
+    border-radius: 10;
+    box-shadow: 0 4px 8px 0 rgba(231, 231, 231, 0.2), 0 6px 20px 0 rgba(252, 251, 251, 0.19);
+}
+/*  */
+@media (min-width: 500px) and (max-width:  1023px){
+    .box{
+        flex: 1 0 51%;
+    }
+    .bottom .share-room span label{
+        display: none;
+    }
+    .bottom .share-room{
+        width: 5%;
+    }
+    .bottom .event-video{
+        width: 65%;
+    }
+    .bottom .action-more{
+        width: 30%;
+    }
+    #button-presentnow{
+        transform: translate(-65%, -50%);
+    }
+    #button-ellipsis{
+        transform: translate(15%, -50%);
+    }
+}
+@media (min-width: 1024px) and (max-width:  1239px){
+    .box{
+        flex: 1 0 41%;
+    }
+    .bottom .share-room span label{
+        display: none;
+    }
+    .bottom .share-room{
+        width: 5%;
+    }
+    .bottom .event-video{
+        width: 65%;
+    }
+    .bottom .action-more{
+        width: 30%;
+    }
+    #button-presentnow{
+        transform: translate(-65%, -50%);
+    }
+    #button-ellipsis{
+        transform: translate(15%, -50%);
+    }
+}
+.button-video{
+    width: 80px;
+    height: 80px;
+}
+.button-pins{
+    position: absolute;
+    background: #111;
+    border-radius: 100%;
+    box-shadow: 0 4px 8px 0 rgba(250, 250, 250, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+    opacity: 0.3;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-125%, -50%);
+    transition: 0.3s;
+}
+.button-showlayout{
+    position: absolute;
+    background: #111;
+    border-radius: 100%;
+    box-shadow: 0 4px 8px 0 rgba(250, 250, 250, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+    display: none;
+    opacity: 0.3;
+    top: 50%;
+    left: 50%;
+    transform: translate(25%,-50%);
+    transition: 0.3s;
+}
+.button-pins-showlayout{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+    color: white;
+}
+video:hover{
+    transition: 0.5s;
+    display: inline;
+}
+.menu-top-right{
+    position: fixed;
+    width: 350px;
+    height: 48px;
+    background: white;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    justify-content: center;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.6s;
+}
+.menu-top-right .users-online{
+    flex: 1;
+    box-sizing: border-box;
+    padding-top: 10px;
+    text-align:  center;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+}
+.menu-top-right .chat-button{
+    box-sizing: border-box;
+    padding-top: 10px;
+    text-align: center;
+    flex: 1;
+    height: 100%;
+    border-right: solid 1px dimgray;
+    border-left: solid 1px dimgray;
+}
+.time-now{
+    padding-top: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 28px;
+    flex: 1;
+    height: 100%;
+}
+.menu-top-right .number-menu-top-right, .menu-top-right .icon-user-chat{
+    font-size: 24px;
+    margin: 0 5px 0 0;
+}
+.users-online:hover, .chat-button:hover{
+    cursor: pointer;
+    background: #f0f0f0;
+    transition: 0.3s;
+}
+.chat .title-frame-users-chat{
+    padding: 10px 2px 10px 20px;
+}
+.chat .title-frame-users-chat h3{
+    margin: 0;
+}
+.chat .title-frame-users-chat #button-close{
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    transition: 0.3s;
+}
+.chat .title-frame-users-chat #button-close:hover{
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+.tabs .tabContainer{
+    text-align: center;
+    padding: 1px;
+    
+}
+.tabs .tabContainer div span{
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: .25px;
+    text-transform: none;
+}
+.tabs .tabContainer div span .iconTab{
+    font-size: 22px;
+    text-align: center;
+    vertical-align: middle;
+}
+.tabs .tabContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+.tabs .tabContainer div{
+    flex: 1;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #dadce0;
+}
+.tabs .tabContainer div:hover{
+    background-color: rgba(0,121,107,0.039);
+    cursor: pointer;
+}
+.tabs .tabPanel{
+    height: 83vh;
+    width: 100%;
+    display: none;
+}
+.tabs .tabPanel .frame-chat{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.tabs .tabPanel .frame-chat #chat-layout{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 72vh;
+    padding: 5px 10px 5px 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+.tabs .tabPanel .frame-chat .bottom-editText{
+    position: absolute;
+    bottom: 0;
+    left: 2%;
+    margin: 10px auto;
+    width: 73%;
+}
+.tabs .tabPanel .frame-chat .bottom-editText #editTex-chat{
+    padding: 10px;
+    width: 100%;
+}
+/* layout-chat */
+.layout-chat-username{
+    color: #04b83a;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 19px;
+    padding-right: 8px;
+}
+.layout-chat-username.me-mess{
+    color: #202124;
+}
+.layout-chat-time{
+    color: #5f6368;
+    display: inline-block;
+    font-size: 12px;
+}
+.layout-chat-value{
+    color: #202124;
+    font-size: 13px;
+    line-height: 20px;
+    padding-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+/* layout-chat */
+/* ghim */
+.videos.reorder-container{
+    flex-direction: column;
+}
+.gim-layout{
+    position: relative;
+    flex: 3;
+    height: 100%;
+}
+.not-gim-layout{
+    position: relative;
+    left: 0;
+    top: 0;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.not-gim-layout.reorder{
+    flex-direction: row;
+}
+.gim-layout .gim{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    transition: 3s;
+    transform: translate(-50%, -50%);
+}
+.not-gim-layout .box-video{
+    position: relative;
+    width: auto;
+    height: 40%;
+    margin: 5px;
+    box-sizing: border-box;
+}
+/* ghim */
+/* Người dùng trong frame chat */
+.tabPanel .user{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    overflow: auto;
+    align-items: center;
+    border-bottom: solid 0.5px #dadce0;
+}
+.tabPanel .user .avata{
+    flex: 1;
+    box-sizing: border-box;
+}
+.tabPanel .user .avata ion-icon{
+    font-size: 35px;
+}
+.tabPanel .user .user-name{
+    flex: 6;
+    margin-left: 5px;
+    box-sizing: border-box;
+    background: white;
+}
+.tabPanel .user .user-ghim{
+    flex: 1;
+    box-sizing: border-box;
+    background: white;
+}
+.tabPanel .user .user-volumn{
+    flex: 1;
+    box-sizing: border-box;
+    background: white; 
+}
+.tabPanel .user .user-ghim ion-icon, .tabPanel .user .user-volumn ion-icon{
+    padding: 5px;
+}
+.tabPanel .user .user-ghim ion-icon:hover, .tabPanel .user .user-volumn ion-icon:hover{
+    border-radius: 100%;
+    background: rgb(216, 216, 216);
+}
+/* Người dùng trong frame chat */
+/* modal user join */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    border-radius: 10px;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+.close {
+    color: #5f6368;
+    padding: 0 10px;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: white;
+    border-radius: 50%;
+    background:  #5f6368;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+    padding: 10px 16px;
+}
+.modal-header .modal-span{
+    font-size: 18px;
+    color: #5f6368;
+}
+.modal-body {
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+    padding: 10px 16px;
+    align-items: center;
+}
+.modal-body img{
+    width: 35px;
+    height: 35px;
+}
+.modal-body span{
+    margin-left: 10px;
+    font-size: 16px;
+    color: #5FB55F;
+}
+.modal-footer {
+    padding: 2px 16px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    flex-grow: inherit;
+    align-items: center;
+}
+.modal-footer span{
+    padding: 8px 10px;
+    font-size: 16px;
+    margin: 10px 5px;
+}
+.modal-footer span:hover{
+    cursor: pointer;
+    border-radius: 5px;
+    background: #3ADF00;
+    color: white;
+}
+/* modal user join */

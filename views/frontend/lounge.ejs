@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/lounge.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+	<div>
+		<% if(typeof user != "undefined"){ %>
+			<h1><%= user.user_name %></h1>
+		<% } %>
+	</div>
+	<!-- toats -->
+	<div class="box-toast-alert">
+
+	</div>
+	<!-- end toats -->
+	<!-- modal login -->
+	<div id="myModal" class="modal">
+		<div class="modal-container" id="modal-container">
+			<span class="close">&times;</span>
+			<div class="form-modal-container sign-up-modal-container">
+				<form action="signup" method="POST">
+					<h1>Tạo tài khoảng</h1>
+					<div class="social-modal-container">
+						<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+						<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+						<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+					<span>hoặc sử dụng email của bạn để đăng ký</span>
+					<input type="text" name="userName" placeholder="Tên đăng nhập ..." />
+					<input type="email" name="email" placeholder="Địa chỉ email" />
+					<input type="password" name="passWord" placeholder="Mật khẩu" />
+					<button>Đăng ký</button>
+				</form>
+			</div>
+			<div class="form-modal-container sign-in-modal-container">
+				<form action="signin" method="POST">
+					<h1>Đăng nhập</h1>
+					<div class="social-modal-container">
+						<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+						<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+						<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+					<span>hoặc sử dụng tài khoảng của bạn</span>
+					<input type="email" name="email" placeholder="Địa chỉ email ..." />
+					<input type="password" name="password" placeholder="Mật khẩu" />
+					<a href="#">Quên mật khẩu?</a>
+					<button>Đăng nhập</button>
+				</form>
+			</div>
+			<div class="overlay-modal-container">
+				<div class="overlay">
+					<div class="overlay-panel overlay-left">
+						<h1>Welcome Back!</h1>
+						<p>Để giữ kết nối với chúng tôi, vui lòng đăng nhập bằng thông tin cá nhân của bạn</p>
+						<button class="ghost" id="signIn">Đăng nhập</button>
+					</div>
+					<div class="overlay-panel overlay-right">
+						<h1>Chào bạn!</h1>
+						<p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
+						<button class="ghost" id="signUp">Đăng ký</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal login -->
+	<!-- modal search room -->
+	<div id="myModal-search" class="modal">
+		<div class="modal-container" id="modal-container-search">
+			<span class="close" id="close-search">&times;</span>
+			<div class="div-box-search">
+				<div class="div-search-room">
+					<input type="text" name="box-search" id="box-search" placeholder="Tìm kiếm phòng họp ...">
+					<div class="btn-search" id="btn-search">
+						<ion-icon name="search"></ion-icon>
+					</div>
+				</div>
+			</div>
+			<div class="loader"></div>
+			<div>
+				<table class="content-table" id="table-room"> 
+					<thead>
+						<tr>
+							<th width="5%">Id</th>
+							<th width="20%">RoomName</th>
+							<th width="30%">RoomID</th>
+							<th width="10%">Online</th>
+							<th width="15%">RoomMode</th>
+							<th width="10%">Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- modal search room -->
+	<!-- modal create room -->
+	<div id="myModal-createroom" class="modal">
+		<div class="modal-container" id="modal-container-createroom">
+			<span class="close" id="close-createroom">&times;</span>
+			<br><br><br><br>
+			<h2>Chọn loại phòng họp</h2>
+			<br><br><br>
+			<div class="div_radio">
+				<div></div>
+				<div>
+					<input type="radio" id="mode_room_public" name="mode_room" value="public" checked="checked">
+					<label for="mode_room_public">public</label><br>
+					<input type="radio" id="mode_room_private" name="mode_room" value="private">
+					<label for="mode_room_private">private</label><br>
+					<input type="radio" id="mode_room_password" name="mode_room" value="password">
+					<label for="mode_room_password">password</label><br>
+				</div>
+				<div></div>
+			</div>
+			<br><br><br>
+			<div class="div_radio" >
+				<div></div>
+				<div>
+					<div id="div_input_room_password">
+						<label for="password_is_room">Nhập mật khẩu phòng</label>
+						<input type="password" id="password_is_room" name="password_is_room" placeholder="Nhập mật khẩu phòng">
+					</div>
+				</div>
+				<div></div>
+			</div>
+			<div class="div_radio">
+				<div></div>
+				<input type="button" id="ok-type-room" name="btntyperoom" value="OK">
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<!-- modal create room -->
+	<!-- modal password room -->
+	<div id="myModal-roompassword" class="modal">
+		<div class="modal-container" id="modal-container-roompassword">
+			<span class="close" id="close-roompassword">&times;</span>
+			<div>
+				<form id="form-room-password">
+					<span style="font-size: 18px; color: red;"></span>
+					<label for="room-password">Nhập mật khẩu phòng</label>
+					<input type="text" id="room-password" name="room_password" placeholder="Nhập mật khẩu phòng ...">
+					<input type="button" id="submit-room-password" name="btnRoomPassword" value="OK">
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- modal password room -->
+    <div class="container">
+		<header id="header" class="">
+			<h1>Ứng dụng hội thảo từ xa</h3>	
+		</header>
+		<div class="gird-layout">
+			<div class="element">
+				<div class="layout-left">
+					<video id="video"></video>
+				</div>
+			</div>
+			<div class="element">
+				<div class="layout-right">
+					<div class="item-layout-right not-account">
+						<form id="button-submit" name="formlonge" action="room_id" method="POST" accept-charset="utf-8">
+							<label for="fname" class="label-name">Nhập tên của bạn</label><br>
+   							<input type="text" class="input_text" id="fname" name="name" placeholder="Tên của bạn ..."><br>
+							<label for="froom" class="label-name">Nhập id phòng họp</label>
+							<input type="button" id="search-room" name="searchroom" value="Tìm phòng"><br>
+   							<input type="text" class="input_text" id="froom" name="roomid" placeholder="ID phòng họp ..."><br>
+							<input type="submit" name="btnsubmit" value="Tham gia">
+							<% if(typeof user != "undefined"){  %>
+							<input type="button" id="create-room" name="createid" value="Tạo phòng">
+							<% } %>
+						</form>
+					</div>
+					<% if(typeof user == "undefined"){  %>
+					<div class="item-layout-right join-room">
+						<a id="myBtn">Đăng nhập</a> <span>hoặc</span> <a>đăng ký</a> để có thể tạo phòng họp
+					</div>
+					<% } %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/lounge.js"></script>
+	<script>
+		<% if(typeof roomID !== "undefined"){ %>
+			const ROOM_ID = "<%= roomID %>"
+			document.getElementById('froom').value = ROOM_ID
+		<% } %>
+		<% if(typeof user != "undefined"){  %>
+			const username = "<%= user.user_name %>"
+			document.getElementById("fname").value = username
+			document.getElementById("fname").setAttribute("readonly", "true")
+		<%}%>
+	</script>
+</body>
+</html>
